@@ -7,6 +7,7 @@ from rest_framework.views import APIView
 from .models import Contact
 from .serializers import ContactSerializer
 from django.shortcuts import get_object_or_404
+from rest_framework import generics
 
 class ContactList(APIView):
     def get(self, request):
@@ -71,4 +72,10 @@ def contact_update(request, pk):
         serializer.save()
         return Response(serializer.data)
     return Response(serializer.errors)
+
+
+class ContactListCreate(generics.ListCreateAPIView):
+    queryset = Contact.objects.all()
+    serializer_class = ContactSerializer
+
 

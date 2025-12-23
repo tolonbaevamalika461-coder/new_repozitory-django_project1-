@@ -17,10 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.http import HttpResponse
 from django.urls import path
-from contacts.views import ContactList,ContactCreate,ContactDetail,ContactDelete,ContactUpdate,contact_list,contact_create,contact_delete,contact_update
+from contacts.views import ContactList, ContactCreate, ContactDetail, ContactDelete, ContactUpdate, contact_list, \
+    contact_create, contact_delete, contact_update, ContactListCreate
 
-def home(request):
-    return HttpResponse("Hello, world.")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,4 +32,5 @@ urlpatterns = [
     path('fbv/contacts/create/', contact_create),
     path('fbv/contacts/<int:pk>/delete/', contact_delete),
     path('fbv/contacts/<int:pk>/update/', contact_update),
+    path('generic/contacts/', ContactListCreate.as_view()),
 ]
